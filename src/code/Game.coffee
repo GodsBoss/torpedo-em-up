@@ -33,3 +33,9 @@ class Game
 
 	handlePlaying:()->
 		@world.pass 1 / Game.FPS
+		@handlePlayerMovement()
+
+	handlePlayerMovement:()->
+		@world.player.setMovement
+			x: @keyboard.right() - @keyboard.left()
+			y: @keyboard.down() - @keyboard.up()

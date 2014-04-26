@@ -40,25 +40,13 @@ class Keyboard
 		@keyStates[KEY_SPACE]
 
 	up:()->
-		@anyUpKey() and not @anyDownKey()
+		!!(@keyStates[KEY_UP] or @keyStates[KEY_W])
 
 	down:()->
-		@anyDownKey() and not @anyUpKey()
+		!!(@keyStates[KEY_DOWN] or @keyStates[KEY_S])
 
 	left:()->
-		@anyLeftKey() and not @anyRightKey()
+		!!(@keyStates[KEY_LEFT] or @keyStates[KEY_A])
 
 	right:()->
-		@anyRightKey() and not @anyLeftKey()
-
-	anyUpKey:()->
-		@keyStates[KEY_UP] or @keyStates[KEY_W]
-
-	anyDownKey:()->
-		@keyStates[KEY_DOWN] or @keyStates[KEY_S]
-
-	anyLeftKey:()->
-		@keyStates[KEY_LEFT] or @keyStates[KEY_A]
-
-	anyRightKey:()->
-		@keyStates[KEY_RIGHT] or @keyStates[KEY_D]
+		!!(@keyStates[KEY_RIGHT] or @keyStates[KEY_D])

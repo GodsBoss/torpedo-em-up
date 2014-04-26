@@ -6,3 +6,4 @@ class World
 
 	pass:(time)->
 		@time += time
+		@player.pass time

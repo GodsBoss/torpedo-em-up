@@ -1,4 +1,8 @@
 class View
+
+	# Shortcuts
+	floor = Math.floor
+
 	scale: 1
 
 	constructor:(@context, @sprites)->
@@ -17,13 +21,14 @@ class View
 
 	drawPlayer:()->
 		position = @center @world.player
-		@drawImage 'player', position.x, position.y, Math.floor(@world.time % 2)
+		@drawImage 'player', position.x, position.y, floor(@world.time % 2)
 
 	drawImage:(id, x, y, frame = 0)->
+		[x, y] = [floor(x), floor(y)]
 		@context.drawImage @sprites.get(id, frame), x * @scale, y * @scale
 
 	center:(obj)->
-		x: Math.floor(obj.x - obj.width / 2)
-		y: Math.floor(obj.y - obj.height / 2)
+		x: obj.x - obj.width / 2
+		y: obj.y - obj.height / 2
 
 	setScale:(@scale)->
