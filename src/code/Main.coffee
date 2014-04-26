@@ -8,6 +8,8 @@ class Main
 		@document = @window.document
 		@removeJsHint()
 		@addCanvas()
+		@initGame()
+		@runGame()
 
 	removeJsHint:()->
 		jsHint = @document.getElementById 'enable-js'
@@ -18,3 +20,9 @@ class Main
 		@canvas.width = Main.WIDTH
 		@canvas.height = Main.HEIGHT
 		@document.body.appendChild @canvas
+
+	initGame:()->
+		@game = new Game
+
+	runGame:()->
+		@game.start()
