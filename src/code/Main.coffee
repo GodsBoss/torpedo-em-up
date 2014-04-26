@@ -1,6 +1,7 @@
 class Main
 	@WIDTH = 640
 	@HEIGHT = 400
+	@GFX = './gfx.png'
 
 	constructor:(@window)->
 
@@ -8,8 +9,7 @@ class Main
 		@document = @window.document
 		@removeJsHint()
 		@addCanvas()
-		@initGame()
-		@runGame()
+		@initView()
 
 	removeJsHint:()->
 		jsHint = @document.getElementById 'enable-js'
@@ -21,9 +21,16 @@ class Main
 		@canvas.height = Main.HEIGHT
 		@document.body.appendChild @canvas
 
-	initGame:()->
-		view = new View @canvas
+	initView:()->
+		@image = @document.createElement 'img'
+		@image.addEventListener 'load', @initGame, false
+		@image.src = Main.GFX
+
+	initGame:()=>
+		view = new View @canvas, @image
+		view.setScale 2
 		@game = new Game Repeater, view
+		@runGame()
 
 	runGame:()->
 		@game.start()

@@ -1,4 +1,4 @@
-build: build-dir build/index.html build/game.js
+build: build-dir build/index.html build/game.js build/gfx.png
 
 build-dir:
 	[ -d build ] || mkdir build
@@ -8,6 +8,9 @@ build/index.html: src/index.html
 
 build/game.js: src/code/*.coffee
 	coffee -j build/game.coffee -c `ls src/code/*.coffee|grep -v init.coffee` src/code/init.coffee
+
+build/gfx.png: src/gfx/gfx.xcf
+	gimp -i -b "`cat ./src/gfx/export.scm`"
 
 clean:
 	rm -rf build

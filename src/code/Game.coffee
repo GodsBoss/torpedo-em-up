@@ -1,5 +1,9 @@
 class Game
 	@FPS = 25
+	@STATES =
+		MENU: 1
+
+	state: Game.STATES.MENU
 
 	constructor:(@repeater, @view)->
 
