@@ -5,12 +5,19 @@ class Sprites
 		@cache =
 			'1': {}
 
-	get:(id)->
-		@cache[@scale][id] ?= @generate id
+	get:(id, frame = 0)->
+		@cache[@scale][id] ? @generate id
+		@cache[@scale][id][frame]
 
 	generate:(id)->
+		@cache[@scale][id] = []
+		for frame in [1..(@map[id].frames ? 1)]
+			@cache[@scale][id][frame-1] = @generateFrame id, frame
+
+	generateFrame:(id, frame)->
 		# Spaghetti code ahead!
 		[x, y, w, h] = [@map[id].x, @map[id].y, @map[id].w, @map[id].h]
+		y += (frame - 1) * h
 		[destWidth, destHeight] = [w*@scale, h*@scale]
 		canvas = document.createElement 'canvas'
 		canvas.width = destWidth

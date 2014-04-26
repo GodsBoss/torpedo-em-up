@@ -32,3 +32,4 @@ class Game
 		@world.addPlayer player
 
 	handlePlaying:()->
+		@world.pass 1 / Game.FPS

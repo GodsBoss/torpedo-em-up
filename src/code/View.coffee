@@ -17,10 +17,10 @@ class View
 
 	drawPlayer:()->
 		position = @center @world.player
-		@drawImage 'player', position.x, position.y
+		@drawImage 'player', position.x, position.y, Math.floor(@world.time % 2)
 
-	drawImage:(id, x, y)->
-		@context.drawImage @sprites.get(id), x * @scale, y * @scale
+	drawImage:(id, x, y, frame = 0)->
+		@context.drawImage @sprites.get(id, frame), x * @scale, y * @scale
 
 	center:(obj)->
 		x: Math.floor(obj.x - obj.width / 2)

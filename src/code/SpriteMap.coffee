@@ -10,3 +10,4 @@ class SpriteMap
 			y: 0
 			w: 44
 			h: 23
+			frames: 2
