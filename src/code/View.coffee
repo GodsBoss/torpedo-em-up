@@ -5,6 +5,25 @@ class View
 
 	draw:(game)->
 		if game.state is Game.STATES.MENU
-			@context.drawImage @sprites.get('title'), 0, 0
+			@drawImage 'title', 0, 0
+		if game.state is Game.STATES.PLAYING
+			@world = game.world
+			@drawBackground()
+			@drawPlayer()
+
+	drawBackground:()->
+		@context.fillStyle = '#00f'
+		@context.fillRect 0, 0, @context.canvas.width, @context.canvas.height
+
+	drawPlayer:()->
+		position = @center @world.player
+		@drawImage 'player', position.x, position.y
+
+	drawImage:(id, x, y)->
+		@context.drawImage @sprites.get(id), x * @scale, y * @scale
+
+	center:(obj)->
+		x: Math.floor(obj.x - obj.width / 2)
+		y: Math.floor(obj.y - obj.height / 2)
 
 	setScale:(@scale)->

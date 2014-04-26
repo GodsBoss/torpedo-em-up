@@ -1,8 +1,13 @@
 class Game
 	@FPS = 25
+
 	@STATES =
 		MENU: 1
 		PLAYING: 2
+
+	@handlers = {}
+	@handlers[@STATES.MENU] = 'handleMenu'
+	@handlers[@STATES.PLAYING] = 'handlePlaying'
 
 	state: Game.STATES.MENU
 
@@ -13,15 +18,17 @@ class Game
 		@gameLoop.start()
 
 	tick:()=>
-		if @state is Game.STATES.MENU
-			@handleMenu()
-		if @state is Game.STATES.PLAYING
-			@handlePlaying()
+		@[Game.handlers[@state]]()
 		@view.draw @
 
-	handleMenu:()->
+	handleMenu:()=>
 		if @keyboard.shoots()
-			@time = 0
 			@state = Game.STATES.PLAYING
+			@createWorld()
+
+	createWorld:()=>
+		@world = new World()
+		player = Player.createDefault()
+		@world.addPlayer player
 
 	handlePlaying:()->
