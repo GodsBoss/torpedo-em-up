@@ -1,11 +1,10 @@
 class View
 	scale: 1
 
-	constructor:(@canvas, @image)->
-		@context = @canvas.getContext '2d'
+	constructor:(@context, @sprites)->
 
 	draw:(game)->
 		if game.state is Game.STATES.MENU
-			@context.drawImage @image, 0, 0, 320, 200, 0, 0, 320*@scale, 200*@scale
+			@context.drawImage @sprites.get('title'), 0, 0
 
 	setScale:(@scale)->

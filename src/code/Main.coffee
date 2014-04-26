@@ -27,7 +27,9 @@ class Main
 		@image.src = Main.GFX
 
 	initGame:()=>
-		view = new View @canvas, @image
+		sprites = new Sprites @image, SpriteMap.create()
+		sprites.setScale 2
+		view = new View @canvas.getContext('2d'), sprites
 		view.setScale 2
 		@game = new Game Repeater, view
 		@runGame()
