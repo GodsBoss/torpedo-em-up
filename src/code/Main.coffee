@@ -22,7 +22,7 @@ class Main
 		@document.body.appendChild @canvas
 
 	initGame:()->
-		@game = new Game
+		@game = new Game Repeater
 
 	runGame:()->
 		@game.start()
