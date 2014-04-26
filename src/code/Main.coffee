@@ -27,11 +27,14 @@ class Main
 		@image.src = Main.GFX
 
 	initGame:()=>
+		keyboard = new Keyboard
+		@window.addEventListener 'keydown', keyboard.keyDown, false
+		@window.addEventListener 'keyup', keyboard.keyUp, false
 		sprites = new Sprites @image, SpriteMap.create()
 		sprites.setScale 2
 		view = new View @canvas.getContext('2d'), sprites
 		view.setScale 2
-		@game = new Game Repeater, view
+		@game = new Game Repeater, view, keyboard
 		@runGame()
 
 	runGame:()->
