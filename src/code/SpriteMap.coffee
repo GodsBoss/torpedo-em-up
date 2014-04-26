@@ -11,3 +11,9 @@ class SpriteMap
 			w: 44
 			h: 23
 			frames: 2
+		torpedo:
+			x: 371
+			y: 1
+			w: 14
+			h: 5
+			frames: 4

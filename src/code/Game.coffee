@@ -28,14 +28,19 @@ class Game
 
 	createWorld:()=>
 		@world = new World()
-		player = Player.createDefault()
+		player = Player.createDefault @world
 		@world.addPlayer player
 
 	handlePlaying:()->
 		@world.pass 1 / Game.FPS
 		@handlePlayerMovement()
+		@handlePlayerShoots()
 
 	handlePlayerMovement:()->
 		@world.player.setMovement
 			x: @keyboard.right() - @keyboard.left()
 			y: @keyboard.down() - @keyboard.up()
+
+	handlePlayerShoots:()->
+		if @keyboard.shoots()
+			@world.player.shoot()
