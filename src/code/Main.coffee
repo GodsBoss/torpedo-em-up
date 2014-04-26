@@ -1,10 +1,19 @@
 class Main
+	@WIDTH = 640
+	@HEIGHT = 400
+
 	constructor:(@window)->
 
 	run:()->
+		@removeJsHint()
+		@addCanvas()
+
+	removeJsHint:()->
 		jsHint = @window.document.getElementById 'enable-js'
 		jsHint.parentNode.removeChild jsHint
-		canvas = @window.document.createElement 'canvas'
-		canvas.width = 640
-		canvas.height = 400
-		@window.document.body.appendChild canvas
+
+	addCanvas:()->
+		@canvas = @window.document.createElement 'canvas'
+		@canvas.width = Main.WIDTH
+		@canvas.height = Main.HEIGHT
+		@window.document.body.appendChild @canvas
