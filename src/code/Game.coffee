@@ -13,4 +13,15 @@ class Game
 		@gameLoop.start()
 
 	tick:()=>
+		if @state is Game.STATES.MENU
+			@handleMenu()
+		if @state is Game.STATES.PLAYING
+			@handlePlaying()
 		@view.draw @
+
+	handleMenu:()->
+		if @keyboard.shoots()
+			@time = 0
+			@state = Game.STATES.PLAYING
+
+	handlePlaying:()->
