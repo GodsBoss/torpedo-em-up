@@ -22,7 +22,8 @@ class Main
 		@document.body.appendChild @canvas
 
 	initGame:()->
-		@game = new Game Repeater
+		view = new View @canvas
+		@game = new Game Repeater, view
 
 	runGame:()->
 		@game.start()
