@@ -1,4 +1,4 @@
-class Player
+class Player extends PhysicsObject
 	#Shortcuts
 	max = Math.max
 	min = Math.min
@@ -13,32 +13,28 @@ class Player
 	RELOADING = 0.5
 
 	@createDefault = (world)->
-		player = new Player world, 44, 23
-		player.moveTo 50, 100
-		player.speed = 5
+		player = new Player world
+		player.setPosition 50, 100
 		player
 
-	movement:
-		x: 0
-		y: 0
+	speed: 50
+	width: 44
+	height: 23
 
-	constructor:(@world, @width, @height)->
-		@x = 0
-		@y = 0
+	constructor:(@world)->
 		@reloading = RELOADING # To avoid shooting immediately
 
-	moveTo:(@x, @y)->
-		@constrainToBounds()
-
-	setMovement:(@movement)->
+	setMovement:(movement)->
+		@setVelocity movement.x * @speed, movement.y * @speed
 
 	constrainToBounds:()->
 		@x = max(BOUNDS.left+@width/2, min(BOUNDS.right-@width/2, @x))
 		@y = max(BOUNDS.top+@height/2, min(BOUNDS.bottom-@height/2, @y))
 
 	pass:(time)->
+		super time
+		@constrainToBounds()
 		@reloading = max 0, @reloading - time
-		@moveTo @x + @movement.x * @speed, @y + @movement.y * @speed
 
 	shoot:()->
 		if not @reloading
