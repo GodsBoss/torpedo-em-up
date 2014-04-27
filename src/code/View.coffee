@@ -18,6 +18,7 @@ class View
 			@drawEntities @world.enemies
 			@drawEntities @world.powerUps
 			@drawEntities @world.fx
+			@showPoints()
 
 	drawBackground:()->
 		offset = - floor @world.time * 5 % 320
@@ -42,3 +43,9 @@ class View
 		y: obj.y - obj.height / 2
 
 	setScale:(@scale)->
+
+	showPoints:()->
+		chars = (@world.points + '').split ''
+		start = 320 - chars.length * 6
+		for i in [0..chars.length-1]
+			@drawImage chars[i], start + i * 6, 194
