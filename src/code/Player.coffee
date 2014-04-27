@@ -45,3 +45,6 @@ class Player extends PhysicsObject
 
 	receiveDamage:(damage)->
 		@life -= Math.min @life, damage
+
+	alive:()->
+		@life > 0

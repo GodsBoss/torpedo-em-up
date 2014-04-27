@@ -35,6 +35,7 @@ class Game
 		@world.pass 1 / Game.FPS
 		@handlePlayerMovement()
 		@handlePlayerShoots()
+		@handlePlayerDeath()
 
 	handlePlayerMovement:()->
 		@world.player.setMovement
@@ -44,3 +45,7 @@ class Game
 	handlePlayerShoots:()->
 		if @keyboard.shoots()
 			@world.player.shoot()
+
+	handlePlayerDeath:()->
+		if not @world.player.alive()
+			@state = Game.STATES.MENU
