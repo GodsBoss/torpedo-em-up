@@ -13,13 +13,22 @@ class Fish
 		@directionTimer = CHANGE_DIRECTION_INTERVAL
 
 	pass:(time)->
-		@x += @vx
-		@y += @vy
+		@setPosition @x + @vx, @y + @vy
 		@time += time
 		@directionTimer -= time
 		if @directionTimer < 0
 			@chooseDirection()
 			@directionTimer += CHANGE_DIRECTION_INTERVAL
+
+	setPosition:(@x, @y)->
+		if @y < Math.max @height / 2
+			@y = @height / 2
+			@chooseDirection()
+			@vy = Math.abs @vy
+		if @y > Math.min 200 - @height / 2
+			@y = 200 - @height / 2
+			@chooseDirection()
+			@vy = - Math.abs @vy
 
 	chooseDirection:()->
 		angle = (Math.random() * Math.PI) + Math.PI
