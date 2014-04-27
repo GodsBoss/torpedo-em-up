@@ -113,3 +113,8 @@ class SpriteMap
 			y: 0
 			w: 5
 			h: 5
+		'structure':
+			x: 389
+			y: 3
+			w: 11
+			h: 7

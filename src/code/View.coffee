@@ -53,7 +53,8 @@ class View
 		@showNumber 320, 194, @world.points, View.ALIGN_RIGHT
 
 	showPlayerHealth:()->
-		@showNumber 10, 194, @world.player.life, View.ALIGN_LEFT
+		@drawImage 'structure', 1, 192
+		@showNumber 13, 193, @world.player.life, View.ALIGN_LEFT
 
 	showHighscore:(score)->
 		@showNumber 35, 194, score, View.ALIGN_LEFT
