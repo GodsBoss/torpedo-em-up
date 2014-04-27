@@ -1,15 +1,12 @@
-class Torpedo
+class Torpedo extends PhysicsObject
 	width: 14
 	height: 5
 	strength: 5
 	exploded: false
-
-	constructor:(@x, @y, @vx, @vy)->
-		@lifetime = 0
+	lifetime: 0
 
 	pass:(time)->
-		@x += @vx
-		@y += @vy
+		super time
 		@lifetime += time
 
 	explode:()->

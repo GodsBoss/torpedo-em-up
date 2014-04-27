@@ -29,7 +29,10 @@ class World
 			@enemies.push fish
 
 	createTorpedo:(x, y, vx, vy)->
-		@torpedos.push new Torpedo x, y, vx, vy
+		torpedo = new Torpedo
+		torpedo.setPosition x, y
+		torpedo.setVelocity vx, vy
+		@torpedos.push torpedo
 
 	handleEnemyTorpedoCollisions:()->
 		for enemy in @enemies

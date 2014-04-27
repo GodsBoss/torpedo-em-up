@@ -42,5 +42,5 @@ class Player
 
 	shoot:()->
 		if not @reloading
-			@world.createTorpedo @x, @y, 5.5, 0
+			@world.createTorpedo @x, @y, 120, 0
 			@reloading = RELOADING
