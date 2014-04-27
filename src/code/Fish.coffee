@@ -1,20 +1,17 @@
-class Fish
+class Fish extends PhysicsObject
 	@LIFE = 10
 	CHANGE_DIRECTION_INTERVAL = 1
 
 	width: 32
 	height: 17
 	type: 'fish'
+	time: 0
+	life: Fish.LIFE
+	directionTimer: CHANGE_DIRECTION_INTERVAL
+	speed: 20
 	
-	constructor:(@x, @y)->
-		@life = Fish.LIFE
-		@time = 0
-		@vx = 0
-		@vy = 0
-		@directionTimer = CHANGE_DIRECTION_INTERVAL
-
 	pass:(time)->
-		@setPosition @x + @vx, @y + @vy
+		super time
 		@time += time
 		@directionTimer -= time
 		if @directionTimer < 0
@@ -33,8 +30,7 @@ class Fish
 
 	chooseDirection:()->
 		angle = (Math.random() * Math.PI) + Math.PI
-		@vx = Math.sin angle
-		@vy = Math.cos angle
+		@setVelocity @speed*Math.sin(angle), @speed*Math.cos(angle)
 
 	receiveDamage:(damage)->
 		@life = Math.max 0, @life - damage

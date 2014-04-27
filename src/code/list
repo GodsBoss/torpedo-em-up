@@ -1,0 +1,14 @@
+src/code/PhysicsObject.coffee
+src/code/Collider.coffee
+src/code/Fish.coffee
+src/code/Game.coffee
+src/code/Keyboard.coffee
+src/code/Main.coffee
+src/code/Player.coffee
+src/code/Repeater.coffee
+src/code/SpriteMap.coffee
+src/code/Sprites.coffee
+src/code/Torpedo.coffee
+src/code/View.coffee
+src/code/World.coffee
+src/code/init.coffee

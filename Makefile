@@ -6,8 +6,8 @@ build-dir:
 build/index.html: src/index.html
 	cp src/index.html build/index.html
 
-build/game.js: src/code/*.coffee
-	coffee -j build/game.coffee -c `ls src/code/*.coffee|grep -v init.coffee` src/code/init.coffee
+build/game.js: src/code/*
+	coffee -j build/game.coffee -c `cat src/code/list`
 
 build/gfx.png: src/gfx/gfx.xcf
 	gimp -i -b "`cat ./src/gfx/export.scm`"
