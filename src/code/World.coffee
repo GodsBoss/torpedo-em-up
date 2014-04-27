@@ -16,6 +16,7 @@ class World
 		@enemies.forEach (enemy) -> enemy.pass time
 		@enemies = @enemies.filter (enemy)->enemy.lives() and enemy.x > -50
 		@handleEnemyTorpedoCollisions()
+		@handleEnemyPlayerCollisions()
 
 	addTime:(time)->
 		@time += time
@@ -44,3 +45,9 @@ class World
 		if not torpedo.exploded and @collider.collide enemy, torpedo
 			enemy.receiveDamage torpedo.strength
 			torpedo.exploded = true
+
+	handleEnemyPlayerCollisions:()->
+		for enemy in @enemies
+			if @collider.collide @player, enemy
+				@player.receiveDamage enemy.getPlayerDamage()
+				enemy.kill()

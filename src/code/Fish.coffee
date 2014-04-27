@@ -35,3 +35,9 @@ class Fish extends PhysicsObject
 
 	lives:()->
 		@life > 0
+
+	getPlayerDamage:()->
+		@life
+
+	kill:()->
+		@life = 0

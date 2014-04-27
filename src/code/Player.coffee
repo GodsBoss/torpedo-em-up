@@ -21,6 +21,7 @@ class Player extends PhysicsObject
 	width: 44
 	height: 23
 	type: 'player'
+	life: 100
 
 	constructor:(@world)->
 		@reloading = RELOADING # To avoid shooting immediately
@@ -41,3 +42,6 @@ class Player extends PhysicsObject
 		if not @reloading
 			@world.createTorpedo @x, @y, 120, 0
 			@reloading = RELOADING
+
+	receiveDamage:(damage)->
+		@life -= Math.min @life, damage
