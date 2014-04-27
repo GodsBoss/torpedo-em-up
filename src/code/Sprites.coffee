@@ -9,6 +9,10 @@ class Sprites
 		@cache[@scale][id] ? @generate id
 		@cache[@scale][id][frame]
 
+	frames:(id)->
+		@cache[@scale][id] ? @generate id
+		@cache[@scale][id].length
+
 	generate:(id)->
 		@cache[@scale][id] = []
 		for frame in [1..(@map[id].frames ? 1)]

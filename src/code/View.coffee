@@ -23,7 +23,7 @@ class View
 
 	drawPlayer:()->
 		position = @center @world.player
-		@drawImage 'player', position.x, position.y, floor(@world.time % 2)
+		@drawImage 'player', position.x, position.y, @world.time
 
 	drawTorpedos:()->
 		for torpedo in @world.torpedos
@@ -31,7 +31,7 @@ class View
 
 	drawTorpedo:(torpedo)->
 		position = @center torpedo
-		@drawImage 'torpedo', position.x, position.y, floor(torpedo.lifetime * 8 % 4)
+		@drawImage 'torpedo', position.x, position.y, torpedo.lifetime * 8
 
 	drawEnemies:()->
 		for enemy in @world.enemies
@@ -39,10 +39,11 @@ class View
 
 	drawEnemy:(enemy)->
 		position = @center enemy
-		@drawImage enemy.type, position.x, position.y, floor(enemy.time % 2)
+		@drawImage enemy.type, position.x, position.y, enemy.time
 
-	drawImage:(id, x, y, frame = 0)->
+	drawImage:(id, x, y, animationTime = 0)->
 		[x, y] = [floor(x), floor(y)]
+		frame = floor animationTime % @sprites.frames id
 		@context.drawImage @sprites.get(id, frame), x * @scale, y * @scale
 
 	center:(obj)->
