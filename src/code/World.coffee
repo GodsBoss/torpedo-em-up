@@ -9,6 +9,7 @@ class World
 		@enemies = []
 		@fx = []
 		@points = 0
+		@powerUps = []
 
 	addPlayer:(@player)->
 
@@ -20,8 +21,11 @@ class World
 		@torpedos = @torpedos.filter (torpedo)->torpedo.x < 330 and not torpedo.exploded
 		@enemies.forEach (enemy) -> enemy.pass time
 		@enemies = @enemies.filter (enemy)->enemy.lives() and enemy.x > -50
+		@powerUps.forEach (powerUp) -> powerUp.pass time
+		@powerUps = @powerUps.filter (powerUp) -> not powerUp.used and powerUp.x > -50
 		@handleEnemyTorpedoCollisions()
 		@handleEnemyPlayerCollisions()
+		@handlePlayerPowerUpCollisions()
 		@handleFx time
 
 	addTime:(time)->
@@ -53,6 +57,7 @@ class World
 		torpedo = new Torpedo
 		torpedo.setPosition x, y
 		torpedo.setVelocity vx, vy
+		torpedo.setStrength @player.attack
 		@torpedos.push torpedo
 		bubbles = new Bubbles
 		bubbles.setPosition x, y
@@ -68,6 +73,8 @@ class World
 			enemy.receiveDamage torpedo.strength
 			if not enemy.lives()
 				@points += enemy.points
+				if Math.random() < enemy.bonusChance
+					@powerUps.push PowerUp.createRandom enemy
 			torpedo.exploded = true
 			bubbles = new Bubbles
 			bubbles.setPosition torpedo.x, torpedo.y
@@ -87,3 +94,14 @@ class World
 			@fx.push bubble
 		@fx.forEach (fx)-> fx.pass time
 		@fx = @fx.filter (fx) -> not fx.isObsolet()
+
+	handlePlayerPowerUpCollisions:()->
+		for powerUp in @powerUps
+			if @collider.collide @player, powerUp
+				powerUp.used = true
+				if powerUp.type is PowerUp.TYPE_POINTS
+					@points += 100
+				if powerUp.type is PowerUp.TYPE_HEALTH
+					@player.life += 10
+				if powerUp.type is PowerUp.TYPE_TORPEDO
+					@player.attack++

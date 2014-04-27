@@ -9,6 +9,7 @@ class Fish extends Enemy
 	directionTimer: CHANGE_DIRECTION_INTERVAL
 	speed: 20
 	points: 5
+	bonusChance: 0.04
 	
 	pass:(time)->
 		super time

@@ -16,6 +16,7 @@ class View
 			@drawEntity @world.player
 			@drawEntities @world.torpedos
 			@drawEntities @world.enemies
+			@drawEntities @world.powerUps
 			@drawEntities @world.fx
 
 	drawBackground:()->

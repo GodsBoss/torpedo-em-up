@@ -47,3 +47,18 @@ class SpriteMap
 			h: 11
 			frames: 3
 			speed: 8
+		powerUpPoints:
+			x: 532
+			y: 31
+			w: 13
+			h: 13
+		powerUpHealth:
+			x: 532
+			y: 16
+			w: 13
+			h: 13
+		powerUpTorpedo:
+			x: 532
+			y: 1
+			w: 13
+			h: 13

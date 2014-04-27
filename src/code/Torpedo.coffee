@@ -7,3 +7,5 @@ class Torpedo extends PhysicsObject
 
 	explode:()->
 		@exploded = true
+
+	setStrength:(@strength)->

@@ -1,4 +1,5 @@
 src/code/PhysicsObject.coffee
+src/code/PowerUp.coffee
 src/code/Bubbles.coffee
 src/code/Bubble.coffee
 src/code/Collider.coffee

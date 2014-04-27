@@ -22,6 +22,7 @@ class Player extends PhysicsObject
 	height: 23
 	type: 'player'
 	life: 100
+	attack: 5
 
 	constructor:(@world)->
 		@reloading = RELOADING # To avoid shooting immediately
