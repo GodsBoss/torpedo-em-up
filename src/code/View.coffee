@@ -1,5 +1,8 @@
 class View
 
+	@ALIGN_LEFT = 'left'
+	@ALIGN_RIGHT = 'right'
+
 	# Shortcuts
 	floor = Math.floor
 
@@ -19,6 +22,7 @@ class View
 			@drawEntities @world.powerUps
 			@drawEntities @world.fx
 			@showPoints()
+			@showPlayerHealth()
 
 	drawBackground:()->
 		offset = - floor @world.time * 5 % 320
@@ -45,7 +49,16 @@ class View
 	setScale:(@scale)->
 
 	showPoints:()->
-		chars = (@world.points + '').split ''
-		start = 320 - chars.length * 6
+		@showNumber 320, 194, @world.points, View.ALIGN_RIGHT
+
+	showPlayerHealth:()->
+		@showNumber 10, 194, @world.player.life, View.ALIGN_LEFT
+
+	showNumber:(x, y, number, alignment)->
+		chars = (number+'').split ''
+		if alignment is View.ALIGN_LEFT
+			start = x
+		else
+			start = x - chars.length * 6
 		for i in [0..chars.length-1]
-			@drawImage chars[i], start + i * 6, 194
+			@drawImage chars[i], start + i * 6, y
