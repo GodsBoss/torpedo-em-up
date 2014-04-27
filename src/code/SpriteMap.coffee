@@ -30,3 +30,8 @@ class SpriteMap
 			w: 32
 			h: 46
 			frames: 2
+		background:
+			x: 0
+			y: 201
+			w: 320
+			h: 200

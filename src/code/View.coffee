@@ -18,8 +18,9 @@ class View
 			@drawEntities @world.enemies
 
 	drawBackground:()->
-		@context.fillStyle = '#00f'
-		@context.fillRect 0, 0, @context.canvas.width, @context.canvas.height
+		offset = - floor @world.time * 5 % 320
+		@drawImage 'background', offset, 0
+		@drawImage 'background', 320+offset, 0
 
 	drawEntities:(entities)->
 		for entity in entities
