@@ -13,6 +13,7 @@ class View
 	draw:(game)->
 		if game.state is Game.STATES.MENU
 			@drawImage 'title', 0, 0
+			@showHighscore game.highscore
 		if game.state is Game.STATES.PLAYING
 			@world = game.world
 			@drawBackground()
@@ -53,6 +54,9 @@ class View
 
 	showPlayerHealth:()->
 		@showNumber 10, 194, @world.player.life, View.ALIGN_LEFT
+
+	showHighscore:(score)->
+		@showNumber 35, 194, score, View.ALIGN_LEFT
 
 	showNumber:(x, y, number, alignment)->
 		chars = (number+'').split ''

@@ -13,6 +13,7 @@ class Game
 
 	constructor:(@repeater, @view, @keyboard)->
 		@afterDeathBuffer = 0
+		@highscore = 0
 
 	start:()->
 		@gameLoop ?= @repeater.create @tick, Game.FPS
@@ -52,3 +53,4 @@ class Game
 		if not @world.player.alive()
 			@state = Game.STATES.MENU
 			@afterDeathBuffer = 2
+			@highscore = Math.max @highscore, @world.points
