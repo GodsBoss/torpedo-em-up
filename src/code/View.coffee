@@ -15,6 +15,7 @@ class View
 			@drawBackground()
 			@drawPlayer()
 			@drawTorpedos()
+			@drawEnemies()
 
 	drawBackground:()->
 		@context.fillStyle = '#00f'
@@ -31,6 +32,14 @@ class View
 	drawTorpedo:(torpedo)->
 		position = @center torpedo
 		@drawImage 'torpedo', torpedo.x, torpedo.y, floor(torpedo.lifetime * 8 % 4)
+
+	drawEnemies:()->
+		for enemy in @world.enemies
+			@drawEnemy enemy
+
+	drawEnemy:(enemy)->
+		position = @center enemy
+		@drawImage 'fish', position.x, position.y
 
 	drawImage:(id, x, y, frame = 0)->
 		[x, y] = [floor(x), floor(y)]

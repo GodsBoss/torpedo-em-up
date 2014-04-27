@@ -17,3 +17,9 @@ class SpriteMap
 			w: 14
 			h: 5
 			frames: 4
+		fish:
+			x: 426
+			y: 4
+			w: 32
+			h: 17
+			frames: 2
