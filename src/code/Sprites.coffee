@@ -33,8 +33,8 @@ class Sprites
 		context.drawImage @source, x, y, w, h, 0, 0, w, h
 		sourceData = context.getImageData 0, 0, w, h
 		targetData = context.createImageData destWidth, destHeight
-		for targetX in [0..destWidth]
-			for targetY in [0..destHeight]
+		for targetX in [0..destWidth-1]
+			for targetY in [0..destHeight-1]
 				sourceX = Math.floor targetX / @scale
 				sourceY = Math.floor targetY / @scale
 				sourceIndex = (sourceY*w + sourceX)*4
