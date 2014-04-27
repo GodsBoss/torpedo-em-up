@@ -8,6 +8,7 @@ class Fish extends Enemy
 	life: Fish.LIFE
 	directionTimer: CHANGE_DIRECTION_INTERVAL
 	speed: 20
+	points: 5
 	
 	pass:(time)->
 		super time

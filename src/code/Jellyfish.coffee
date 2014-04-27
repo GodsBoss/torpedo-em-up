@@ -5,6 +5,7 @@ class Jellyfish extends Enemy
 	height: 46
 	type: 'jellyfish'
 	life: Jellyfish.LIFE
+	points: 25
 
 	constructor:()->
 		@float = Math.random() * Math.PI * 2

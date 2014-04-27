@@ -1,4 +1,6 @@
 class Enemy extends PhysicsObject
+	points: 0
+
 	receiveDamage:(damage)->
 		@life = Math.max 0, @life - damage
 

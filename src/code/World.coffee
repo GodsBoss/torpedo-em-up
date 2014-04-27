@@ -8,6 +8,7 @@ class World
 		@torpedos = []
 		@enemies = []
 		@fx = []
+		@points = 0
 
 	addPlayer:(@player)->
 
@@ -65,6 +66,8 @@ class World
 	enemyTorpedoCollide:(enemy, torpedo)->
 		if not torpedo.exploded and @collider.collide enemy, torpedo
 			enemy.receiveDamage torpedo.strength
+			if not enemy.lives()
+				@points += enemy.points
 			torpedo.exploded = true
 			bubbles = new Bubbles
 			bubbles.setPosition torpedo.x, torpedo.y
