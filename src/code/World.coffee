@@ -1,5 +1,6 @@
 class World
 	BUBBLES_PER_SECOND = 0.1
+	ENEMY_GROWTH_FACTOR = 1/60
 
 	constructor:(@collider)->
 		@time = 0
@@ -30,12 +31,12 @@ class World
 
 	addTime:(time)->
 		@time += time
-		@enemyBuffer += time
+		@enemyBuffer += time * (1 + @time * ENEMY_GROWTH_FACTOR)
 		@bubbleBuffer += time
 
 	addEnemies:()->
-		if @enemyBuffer > 1 + Math.random()
-			@enemyBuffer -= 1
+		if @enemyBuffer > (1 + Math.random()) * 5
+			@enemyBuffer -= 5
 			if Math.random() < 0.9
 				@addFish()
 			else
