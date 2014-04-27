@@ -1,5 +1,5 @@
 class World
-	constructor:()->
+	constructor:(@collider)->
 		@time = 0
 		@enemyBuffer = 0
 		@torpedos = []
@@ -12,9 +12,10 @@ class World
 		@addEnemies()
 		@player.pass time
 		@torpedos.forEach (torpedo)-> torpedo.pass time
-		@torpedos = @torpedos.filter (torpedo)->torpedo.x < 330
+		@torpedos = @torpedos.filter (torpedo)->torpedo.x < 330 and not torpedo.exploded
 		@enemies.forEach (enemy) -> enemy.pass time
 		@enemies = @enemies.filter (enemy)->enemy.lives() and enemy.x > -50
+		@handleEnemyTorpedoCollisions()
 
 	addTime:(time)->
 		@time += time
@@ -29,3 +30,13 @@ class World
 
 	createTorpedo:(x, y, vx, vy)->
 		@torpedos.push new Torpedo x, y, vx, vy
+
+	handleEnemyTorpedoCollisions:()->
+		for enemy in @enemies
+			for torpedo in @torpedos
+				@enemyTorpedoCollide enemy, torpedo
+
+	enemyTorpedoCollide:(enemy, torpedo)->
+		if not torpedo.exploded and @collider.collide enemy, torpedo
+			enemy.receiveDamage torpedo.strength
+			torpedo.exploded = true

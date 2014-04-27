@@ -27,7 +27,7 @@ class Game
 			@createWorld()
 
 	createWorld:()=>
-		@world = new World()
+		@world = new World new Collider
 		player = Player.createDefault @world
 		@world.addPlayer player
 
