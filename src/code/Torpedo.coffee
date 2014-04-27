@@ -3,12 +3,7 @@ class Torpedo extends PhysicsObject
 	height: 5
 	strength: 5
 	exploded: false
-	time: 0
 	type: 'torpedo'
-
-	pass:(time)->
-		super time
-		@time += time
 
 	explode:()->
 		@exploded = true

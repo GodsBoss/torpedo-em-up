@@ -7,10 +7,12 @@ class PhysicsObject
 	vy: 0
 	width: 0
 	height: 0
+	time: 0
 
 	setPosition:(@x, @y)->
 
 	setVelocity:(@vx, @vy)->
 
 	pass:(time)->
+		@time += time
 		@setPosition @x + @vx*time, @y + @vy*time

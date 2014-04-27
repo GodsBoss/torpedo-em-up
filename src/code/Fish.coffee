@@ -5,14 +5,12 @@ class Fish extends PhysicsObject
 	width: 32
 	height: 17
 	type: 'fish'
-	time: 0
 	life: Fish.LIFE
 	directionTimer: CHANGE_DIRECTION_INTERVAL
 	speed: 20
 	
 	pass:(time)->
 		super time
-		@time += time
 		@directionTimer -= time
 		if @directionTimer < 0
 			@chooseDirection()
