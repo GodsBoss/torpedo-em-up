@@ -12,6 +12,7 @@ class Game
 	state: Game.STATES.MENU
 
 	constructor:(@repeater, @view, @keyboard)->
+		@afterDeathBuffer = 0
 
 	start:()->
 		@gameLoop ?= @repeater.create @tick, Game.FPS
@@ -22,7 +23,8 @@ class Game
 		@view.draw @
 
 	handleMenu:()=>
-		if @keyboard.shoots()
+		@afterDeathBuffer = Math.max 0, @afterDeathBuffer - 1 / Game.FPS
+		if @keyboard.shoots() and @afterDeathBuffer is 0
 			@state = Game.STATES.PLAYING
 			@createWorld()
 
@@ -49,3 +51,4 @@ class Game
 	handlePlayerDeath:()->
 		if not @world.player.alive()
 			@state = Game.STATES.MENU
+			@afterDeathBuffer = 2
