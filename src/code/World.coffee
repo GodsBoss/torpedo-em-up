@@ -25,10 +25,22 @@ class World
 	addEnemies:()->
 		if @enemyBuffer > 1 + Math.random()
 			@enemyBuffer -= 1
-			fish = new Fish
-			fish.setPosition 330, Math.random() * 200
-			fish.chooseDirection()
-			@enemies.push fish
+			if Math.random() < 0.9
+				@addFish()
+			else
+				@addJellyfish()
+
+	addFish:()->
+		fish = new Fish
+		fish.setPosition 330, Math.random() * 200
+		fish.chooseDirection()
+		@enemies.push fish
+
+	addJellyfish:()->
+		jelly = new Jellyfish
+		jelly.setPosition 330, Math.random() * 160 + 20
+		jelly.setVelocity -10, 0
+		@enemies.push jelly
 
 	createTorpedo:(x, y, vx, vy)->
 		torpedo = new Torpedo

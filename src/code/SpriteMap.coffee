@@ -24,3 +24,9 @@ class SpriteMap
 			w: 32
 			h: 17
 			frames: 2
+		jellyfish:
+			x: 462
+			y: 1
+			w: 32
+			h: 46
+			frames: 2

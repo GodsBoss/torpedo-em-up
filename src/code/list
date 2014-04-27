@@ -1,6 +1,8 @@
 src/code/PhysicsObject.coffee
 src/code/Collider.coffee
+src/code/Enemy.coffee
 src/code/Fish.coffee
+src/code/Jellyfish.coffee
 src/code/Game.coffee
 src/code/Keyboard.coffee
 src/code/Main.coffee

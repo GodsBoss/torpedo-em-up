@@ -1,4 +1,4 @@
-class Fish extends PhysicsObject
+class Fish extends Enemy
 	@LIFE = 10
 	CHANGE_DIRECTION_INTERVAL = 1
 
@@ -29,15 +29,3 @@ class Fish extends PhysicsObject
 	chooseDirection:()->
 		angle = (Math.random() * Math.PI) + Math.PI
 		@setVelocity @speed*Math.sin(angle), @speed*Math.cos(angle)
-
-	receiveDamage:(damage)->
-		@life = Math.max 0, @life - damage
-
-	lives:()->
-		@life > 0
-
-	getPlayerDamage:()->
-		@life
-
-	kill:()->
-		@life = 0
