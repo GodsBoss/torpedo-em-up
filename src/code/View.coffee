@@ -39,7 +39,7 @@ class View
 
 	drawEnemy:(enemy)->
 		position = @center enemy
-		@drawImage enemy.type, position.x, position.y
+		@drawImage enemy.type, position.x, position.y, floor(enemy.time % 2)
 
 	drawImage:(id, x, y, frame = 0)->
 		[x, y] = [floor(x), floor(y)]

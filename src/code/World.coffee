@@ -21,7 +21,7 @@ class World
 		@enemyBuffer += time
 
 	addEnemies:()->
-		if @enemyBuffer > 1
+		if @enemyBuffer > 1 + Math.random()
 			@enemyBuffer -= 1
 			fish = new Fish 330, Math.random() * 200
 			fish.chooseDirection()
