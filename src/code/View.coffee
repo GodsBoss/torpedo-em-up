@@ -31,7 +31,7 @@ class View
 
 	drawTorpedo:(torpedo)->
 		position = @center torpedo
-		@drawImage 'torpedo', torpedo.x, torpedo.y, floor(torpedo.lifetime * 8 % 4)
+		@drawImage 'torpedo', position.x, position.y, floor(torpedo.lifetime * 8 % 4)
 
 	drawEnemies:()->
 		for enemy in @world.enemies
