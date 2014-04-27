@@ -1,4 +1,6 @@
 src/code/PhysicsObject.coffee
+src/code/Bubbles.coffee
+src/code/Bubble.coffee
 src/code/Collider.coffee
 src/code/Enemy.coffee
 src/code/Fish.coffee

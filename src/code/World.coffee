@@ -1,9 +1,13 @@
 class World
+	BUBBLES_PER_SECOND = 0.1
+
 	constructor:(@collider)->
 		@time = 0
 		@enemyBuffer = 0
+		@bubbleBuffer = 0
 		@torpedos = []
 		@enemies = []
+		@fx = []
 
 	addPlayer:(@player)->
 
@@ -17,10 +21,12 @@ class World
 		@enemies = @enemies.filter (enemy)->enemy.lives() and enemy.x > -50
 		@handleEnemyTorpedoCollisions()
 		@handleEnemyPlayerCollisions()
+		@handleFx time
 
 	addTime:(time)->
 		@time += time
 		@enemyBuffer += time
+		@bubbleBuffer += time
 
 	addEnemies:()->
 		if @enemyBuffer > 1 + Math.random()
@@ -47,6 +53,9 @@ class World
 		torpedo.setPosition x, y
 		torpedo.setVelocity vx, vy
 		@torpedos.push torpedo
+		bubbles = new Bubbles
+		bubbles.setPosition x, y
+		@fx.push bubbles
 
 	handleEnemyTorpedoCollisions:()->
 		for enemy in @enemies
@@ -57,9 +66,21 @@ class World
 		if not torpedo.exploded and @collider.collide enemy, torpedo
 			enemy.receiveDamage torpedo.strength
 			torpedo.exploded = true
+			bubbles = new Bubbles
+			bubbles.setPosition torpedo.x, torpedo.y
+			@fx.push bubbles
 
 	handleEnemyPlayerCollisions:()->
 		for enemy in @enemies
 			if @collider.collide @player, enemy
 				@player.receiveDamage enemy.getPlayerDamage()
 				enemy.kill()
+
+	handleFx:(time)->
+		if @bubbleBuffer > 1 / BUBBLES_PER_SECOND
+			@bubbleBuffer -= 1 / BUBBLES_PER_SECOND
+			bubble = new Bubble
+			bubble.setPosition Math.random() * 320, 220
+			@fx.push bubble
+		@fx.forEach (fx)-> fx.pass time
+		@fx = @fx.filter (fx) -> not fx.isObsolet()

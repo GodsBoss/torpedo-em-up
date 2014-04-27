@@ -35,3 +35,15 @@ class SpriteMap
 			y: 201
 			w: 320
 			h: 200
+		bubble:
+			x: 497
+			y: 1
+			w: 9
+			h: 9
+		bubbles:
+			x: 516
+			y: 1
+			w: 9
+			h: 11
+			frames: 3
+			speed: 8
