@@ -20,6 +20,8 @@ class Player extends PhysicsObject
 	speed: 50
 	width: 44
 	height: 23
+	type: 'player'
+	time: 0
 
 	constructor:(@world)->
 		@reloading = RELOADING # To avoid shooting immediately
@@ -33,6 +35,7 @@ class Player extends PhysicsObject
 
 	pass:(time)->
 		super time
+		@time += time
 		@constrainToBounds()
 		@reloading = max 0, @reloading - time
 

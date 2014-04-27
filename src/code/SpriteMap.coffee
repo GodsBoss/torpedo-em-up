@@ -17,6 +17,7 @@ class SpriteMap
 			w: 14
 			h: 5
 			frames: 4
+			speed: 8
 		fish:
 			x: 426
 			y: 4
