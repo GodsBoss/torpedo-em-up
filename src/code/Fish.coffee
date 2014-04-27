@@ -4,6 +4,7 @@ class Fish
 
 	width: 32
 	height: 17
+	type: 'fish'
 	
 	constructor:(@x, @y)->
 		@life = Fish.LIFE
