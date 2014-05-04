@@ -99,10 +99,4 @@ class World
 	handlePlayerPowerUpCollisions:()->
 		for powerUp in @powerUps
 			if @collider.collide @player, powerUp
-				powerUp.used = true
-				if powerUp.type is PowerUp.TYPE_POINTS
-					@points += 100
-				if powerUp.type is PowerUp.TYPE_HEALTH
-					@player.life += 10
-				if powerUp.type is PowerUp.TYPE_TORPEDO
-					@player.attack++
+				powerUp.use @

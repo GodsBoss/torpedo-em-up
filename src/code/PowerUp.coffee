@@ -28,3 +28,12 @@ class PowerUp extends PhysicsObject
 
 	isObsolet:()->
 		@y < -20 or @used
+
+	use:(world)->
+		@used = true
+		if @type is PowerUp.TYPE_POINTS
+			world.points += 100
+		if powerUp.type is PowerUp.TYPE_HEALTH
+			world.player.life += 10
+		if powerUp.type is PowerUp.TYPE_TORPEDO
+			world.player.attack++
