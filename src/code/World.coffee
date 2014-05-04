@@ -23,7 +23,7 @@ class World
 		@enemies.forEach (enemy) -> enemy.pass time
 		@enemies = @enemies.filter (enemy)->enemy.lives() and enemy.x > -50
 		@powerUps.forEach (powerUp) -> powerUp.pass time
-		@powerUps = @powerUps.filter (powerUp) -> not powerUp.used and powerUp.x > -50
+		@powerUps = @powerUps.filter (powerUp) -> not powerUp.isObsolet()
 		@handleEnemyTorpedoCollisions()
 		@handleEnemyPlayerCollisions()
 		@handlePlayerPowerUpCollisions()

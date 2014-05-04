@@ -25,3 +25,6 @@ class PowerUp extends PhysicsObject
 	pass:(time)->
 		super time
 		@vy = Math.sin @time
+
+	isObsolet:()->
+		@y < -20 or @used
