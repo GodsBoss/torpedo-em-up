@@ -25,7 +25,6 @@ class World
 		for entities in ['torpedos', 'enemies', 'powerUps']
 			@[entities].forEach (entity) -> entity.pass time
 			@[entities] = @[entities].filter (entity) -> not entity.isObsolet()
-		@handlePlayerPowerUpCollisions()
 		@handleFx time
 		for system in @systems
 			system.handle @, time
@@ -72,11 +71,6 @@ class World
 		@fx.forEach (fx)-> fx.pass time
 		@fx = @fx.filter (fx) -> not fx.isObsolet()
 
-	handlePlayerPowerUpCollisions:()->
-		for powerUp in @powerUps
-			if @collider.collide @player, powerUp
-				powerUp.use @
-
 	addBubbles:(position)->
 		bubbles = new Bubbles
 		bubbles.setPosition position.x, position.y
@@ -87,4 +81,5 @@ class World
 			when 'player' then [@player]
 			when 'torpedo' then @torpedos
 			when 'enemy' then @enemies
+			when 'powerUp' then @powerUps
 			else []

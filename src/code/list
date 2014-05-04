@@ -3,6 +3,7 @@ src/code/CollisionSystem.coffee
 src/code/CollisionAction.coffee
 src/code/TorpedoEnemyCollision.coffee
 src/code/PlayerEnemyCollision.coffee
+src/code/PlayerPowerUpCollision.coffee
 src/code/PhysicsObject.coffee
 src/code/PowerUp.coffee
 src/code/Bubbles.coffee

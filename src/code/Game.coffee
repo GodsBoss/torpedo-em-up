@@ -35,8 +35,10 @@ class Game
 		collider = new Collider
 		torpedoEnemyCollision = new CollisionSystem collider, new TorpedoEnemyCollision
 		playerEnemyCollision = new CollisionSystem collider, new PlayerEnemyCollision
+		playerPowerUpCollision = new CollisionSystem collider, new PlayerPowerUpCollision
 		@world.addSystem torpedoEnemyCollision
 		@world.addSystem playerEnemyCollision
+		@world.addSystem playerPowerUpCollision
 		@world.addPlayer player
 
 	handlePlaying:()->
