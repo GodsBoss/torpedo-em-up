@@ -33,7 +33,7 @@ class PowerUp extends PhysicsObject
 		@used = true
 		if @type is PowerUp.TYPE_POINTS
 			world.points += 100
-		if powerUp.type is PowerUp.TYPE_HEALTH
+		if @type is PowerUp.TYPE_HEALTH
 			world.player.life += 10
-		if powerUp.type is PowerUp.TYPE_TORPEDO
+		if @type is PowerUp.TYPE_TORPEDO
 			world.player.attack++
