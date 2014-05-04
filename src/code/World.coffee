@@ -60,9 +60,7 @@ class World
 		torpedo.setVelocity vx, vy
 		torpedo.setStrength @player.attack
 		@torpedos.push torpedo
-		bubbles = new Bubbles
-		bubbles.setPosition x, y
-		@fx.push bubbles
+		@addBubbles torpedo
 
 	handleEnemyTorpedoCollisions:()->
 		for enemy in @enemies
@@ -77,9 +75,7 @@ class World
 				if Math.random() < enemy.bonusChance
 					@powerUps.push PowerUp.createRandom enemy
 			torpedo.exploded = true
-			bubbles = new Bubbles
-			bubbles.setPosition torpedo.x, torpedo.y
-			@fx.push bubbles
+			@addBubbles torpedo
 
 	handleEnemyPlayerCollisions:()->
 		for enemy in @enemies
@@ -100,3 +96,8 @@ class World
 		for powerUp in @powerUps
 			if @collider.collide @player, powerUp
 				powerUp.use @
+
+	addBubbles:(position)->
+		bubbles = new Bubbles
+		bubbles.setPosition position.x, position.y
+		@fx.push bubbles
