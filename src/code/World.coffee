@@ -25,7 +25,6 @@ class World
 		for entities in ['torpedos', 'enemies', 'powerUps']
 			@[entities].forEach (entity) -> entity.pass time
 			@[entities] = @[entities].filter (entity) -> not entity.isObsolet()
-		@handleEnemyPlayerCollisions()
 		@handlePlayerPowerUpCollisions()
 		@handleFx time
 		for system in @systems
@@ -63,12 +62,6 @@ class World
 		torpedo.setStrength @player.attack
 		@torpedos.push torpedo
 		@addBubbles torpedo
-
-	handleEnemyPlayerCollisions:()->
-		for enemy in @enemies
-			if @collider.collide @player, enemy
-				@player.receiveDamage enemy.getPlayerDamage()
-				enemy.kill()
 
 	handleFx:(time)->
 		if @bubbleBuffer > 1 / BUBBLES_PER_SECOND
