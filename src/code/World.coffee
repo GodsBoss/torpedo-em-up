@@ -19,7 +19,7 @@ class World
 		@addEnemies()
 		@player.pass time
 		@torpedos.forEach (torpedo)-> torpedo.pass time
-		@torpedos = @torpedos.filter (torpedo)->torpedo.x < 330 and not torpedo.exploded
+		@torpedos = @torpedos.filter (torpedo) -> not torpedo.isObsolet()
 		@enemies.forEach (enemy) -> enemy.pass time
 		@enemies = @enemies.filter (enemy)->enemy.lives() and enemy.x > -50
 		@powerUps.forEach (powerUp) -> powerUp.pass time

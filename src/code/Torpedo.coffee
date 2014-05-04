@@ -9,3 +9,6 @@ class Torpedo extends PhysicsObject
 		@exploded = true
 
 	setStrength:(@strength)->
+
+	isObsolet:()->
+		@x > 330 or @exploded
