@@ -22,7 +22,6 @@ class World
 		@torpedos = @torpedos.filter (torpedo) -> not torpedo.isObsolet()
 		@enemies.forEach (enemy) -> enemy.pass time
 		@enemies = @enemies.filter (enemy) -> not enemy.isObsolet()
-		console.log @enemies.length
 		@powerUps.forEach (powerUp) -> powerUp.pass time
 		@powerUps = @powerUps.filter (powerUp) -> not powerUp.isObsolet()
 		@handleEnemyTorpedoCollisions()
