@@ -32,6 +32,9 @@ class Game
 	createWorld:()=>
 		@world = new World new Collider
 		player = Player.createDefault @world
+		collider = new Collider
+		torpedoEnemyCollision = new CollisionSystem collider, new TorpedoEnemyCollision
+		@world.addSystem torpedoEnemyCollision
 		@world.addPlayer player
 
 	handlePlaying:()->

@@ -11,6 +11,10 @@ class World
 		@fx = []
 		@points = 0
 		@powerUps = []
+		@systems = []
+
+	addSystem:(system)->
+		@systems.push system
 
 	addPlayer:(@player)->
 
@@ -21,10 +25,11 @@ class World
 		for entities in ['torpedos', 'enemies', 'powerUps']
 			@[entities].forEach (entity) -> entity.pass time
 			@[entities] = @[entities].filter (entity) -> not entity.isObsolet()
-		@handleEnemyTorpedoCollisions()
 		@handleEnemyPlayerCollisions()
 		@handlePlayerPowerUpCollisions()
 		@handleFx time
+		for system in @systems
+			system.handle @, time
 
 	addTime:(time)->
 		@time += time
@@ -59,21 +64,6 @@ class World
 		@torpedos.push torpedo
 		@addBubbles torpedo
 
-	handleEnemyTorpedoCollisions:()->
-		for enemy in @enemies
-			for torpedo in @torpedos
-				@enemyTorpedoCollide enemy, torpedo
-
-	enemyTorpedoCollide:(enemy, torpedo)->
-		if not torpedo.exploded and @collider.collide enemy, torpedo
-			enemy.receiveDamage torpedo.strength
-			if not enemy.lives()
-				@points += enemy.points
-				if Math.random() < enemy.bonusChance
-					@powerUps.push PowerUp.createRandom enemy
-			torpedo.exploded = true
-			@addBubbles torpedo
-
 	handleEnemyPlayerCollisions:()->
 		for enemy in @enemies
 			if @collider.collide @player, enemy
@@ -98,3 +88,10 @@ class World
 		bubbles = new Bubbles
 		bubbles.setPosition position.x, position.y
 		@fx.push bubbles
+
+	getEntities:(type)->
+		switch type
+			when 'player' then [@player]
+			when 'torpedo' then @torpedos
+			when 'enemy' then @enemies
+			else []
