@@ -13,3 +13,6 @@ class Enemy extends PhysicsObject
 
 	kill:()->
 		@life = 0
+
+	isObsolet:()->
+		@x < -50 or not @lives()
