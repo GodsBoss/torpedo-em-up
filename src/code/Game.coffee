@@ -59,7 +59,7 @@ class Game
 			@world.player.shoot()
 
 	handlePlayerDeath:()->
-		if not @world.player.alive()
+		if @world.gameOver()
 			@state = Game.STATES.MENU
 			@afterDeathBuffer = 2
 			@highscore = Math.max @highscore, @world.points

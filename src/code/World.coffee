@@ -52,3 +52,6 @@ class World
 			when 'enemy' then @enemies
 			when 'powerUp' then @powerUps
 			else []
+
+	gameOver:()->
+		not @player.alive()
