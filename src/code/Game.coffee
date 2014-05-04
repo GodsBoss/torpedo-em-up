@@ -39,6 +39,7 @@ class Game
 		@world.addSystem torpedoEnemyCollision
 		@world.addSystem playerEnemyCollision
 		@world.addSystem playerPowerUpCollision
+		@world.addSystem new EnemySystem 1/60
 		@world.addPlayer player
 
 	handlePlaying:()->
