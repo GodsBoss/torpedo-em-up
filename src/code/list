@@ -5,6 +5,7 @@ src/code/TorpedoEnemyCollision.coffee
 src/code/PlayerEnemyCollision.coffee
 src/code/PlayerPowerUpCollision.coffee
 src/code/EnemySystem.coffee
+src/code/RandomBubbleSystem.coffee
 src/code/PhysicsObject.coffee
 src/code/PowerUp.coffee
 src/code/Bubbles.coffee

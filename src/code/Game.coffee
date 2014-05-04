@@ -40,6 +40,7 @@ class Game
 		@world.addSystem playerEnemyCollision
 		@world.addSystem playerPowerUpCollision
 		@world.addSystem new EnemySystem 1/60
+		@world.addSystem new RandomBubblesSystem 0.1
 		@world.addPlayer player
 
 	handlePlaying:()->

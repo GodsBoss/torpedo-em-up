@@ -1,6 +1,4 @@
 class World
-	BUBBLES_PER_SECOND = 0.1
-
 	constructor:(@collider)->
 		@time = 0
 		@enemyBuffer = 0
@@ -29,7 +27,6 @@ class World
 
 	addTime:(time)->
 		@time += time
-		@bubbleBuffer += time
 
 	createTorpedo:(x, y, vx, vy)->
 		torpedo = new Torpedo
@@ -40,11 +37,6 @@ class World
 		@addBubbles torpedo
 
 	handleFx:(time)->
-		if @bubbleBuffer > 1 / BUBBLES_PER_SECOND
-			@bubbleBuffer -= 1 / BUBBLES_PER_SECOND
-			bubble = new Bubble
-			bubble.setPosition Math.random() * 320, 220
-			@fx.push bubble
 		@fx.forEach (fx)-> fx.pass time
 		@fx = @fx.filter (fx) -> not fx.isObsolet()
 
