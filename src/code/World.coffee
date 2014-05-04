@@ -18,12 +18,9 @@ class World
 		@addTime time
 		@addEnemies()
 		@player.pass time
-		@torpedos.forEach (torpedo)-> torpedo.pass time
-		@torpedos = @torpedos.filter (torpedo) -> not torpedo.isObsolet()
-		@enemies.forEach (enemy) -> enemy.pass time
-		@enemies = @enemies.filter (enemy) -> not enemy.isObsolet()
-		@powerUps.forEach (powerUp) -> powerUp.pass time
-		@powerUps = @powerUps.filter (powerUp) -> not powerUp.isObsolet()
+		for entities in ['torpedos', 'enemies', 'powerUps']
+			@[entities].forEach (entity) -> entity.pass time
+			@[entities] = @[entities].filter (entity) -> not entity.isObsolet()
 		@handleEnemyTorpedoCollisions()
 		@handleEnemyPlayerCollisions()
 		@handlePlayerPowerUpCollisions()
