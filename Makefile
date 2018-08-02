@@ -4,10 +4,10 @@ build-dir:
 	[ -d build ] || mkdir build
 
 build/index.html: src/index.html
-	cp src/index.html build/index.html
+	cp src/index.html $@
 
 build/game.js: src/code/*
-	cat `cat src/code/list` | coffee --compile --stdio > build/game.js
+	cat `cat src/code/list` | coffee --compile --stdio > $@
 
 build/gfx.png: src/gfx/gfx.xcf
 	gimp -i -b "`cat ./src/gfx/export.scm`"
