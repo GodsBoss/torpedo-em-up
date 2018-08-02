@@ -1,5 +1,6 @@
 class EnemySystem extends System
 	constructor:(@enemyGrowthFactor)->
+		super()
 
 	handle:(world, time)->
 		world.enemyBuffer += time * (1 + world.time * @enemyGrowthFactor)

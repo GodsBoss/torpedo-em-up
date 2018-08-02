@@ -1,5 +1,6 @@
 class CollisionSystem extends System
 	constructor:(@collider, @action)->
+		super()
 
 	handle:(world, time)->
 		for entity1 in world.getEntities @action.getFirstType()

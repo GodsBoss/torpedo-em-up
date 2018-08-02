@@ -5,6 +5,7 @@ class Bubble extends PhysicsObject
 	vy: -10
 
 	constructor:()->
+		super()
 		@offset = Math.PI * 2 * Math.random()
 
 	pass:(time)->

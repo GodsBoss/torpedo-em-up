@@ -9,6 +9,7 @@ class Jellyfish extends Enemy
 	bonusChance: 0.33
 
 	constructor:()->
+		super()
 		@float = Math.random() * Math.PI * 2
 
 	pass:(time)->

@@ -25,6 +25,7 @@ class Player extends PhysicsObject
 	attack: 5
 
 	constructor:(@world)->
+		super()
 		@reloading = RELOADING # To avoid shooting immediately
 
 	setMovement:(movement)->

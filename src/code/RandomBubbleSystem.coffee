@@ -1,5 +1,6 @@
 class RandomBubblesSystem extends System
 	constructor:(@bubblesPerSecond)->
+		super()
 
 	handle:(world, time)->
 		world.bubbleBuffer += time
