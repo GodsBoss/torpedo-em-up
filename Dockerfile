@@ -1,4 +1,4 @@
-FROM alpine:3.7 AS builder
+FROM alpine:3.12.0 AS builder
 
 # Install necessary software
 RUN apk add --update-cache \
