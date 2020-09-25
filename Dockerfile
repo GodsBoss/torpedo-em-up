@@ -6,7 +6,7 @@ RUN apk add --update-cache \
   make \
   nodejs \
   nodejs-npm
-RUN npm install --global coffeescript@2.3.1
+RUN npm install --global coffeescript@2.5.1
 
 WORKDIR /root/project
 COPY . /root/project
